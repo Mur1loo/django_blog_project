@@ -9,6 +9,7 @@ class Post(models.Model):
     text = models.TextField()
     data_published = models.DateTimeField("data published")
 
+
     def __str__(self):
         return self.tittle
 
