@@ -8,10 +8,11 @@
 <body>
     <h1>Lista de Posts</h1>
     <ul>
-        {% for post in Post %}
+        {% for post in posts_list %}
             <li>
-                <h2>{{ post.question_text }}</h2>
-                <p>Data de Publicação: {{ post.pub_date }}</p>
+                <h2><a href="{% url 'blog:detail' post.id %}">{{ post.tittle }}</a></h2>
+                <p>{{ post.initial_text}}</p>
+                <p>Data de Publicação: {{ post.data_published }}</p>
             </li>
         {% endfor %}
     </ul>
