@@ -13,6 +13,7 @@
                 <h2><a href="{% url 'blog:detail' post.id %}">{{ post.tittle }}</a></h2>
                 <p>{{ post.initial_text}}</p>
                 <p>Data de Publicação: {{ post.data_published }}</p>
+                <p>Tags: {{ post.tags.slugs }}</p>
             </li>
         {% endfor %}
     </ul>
