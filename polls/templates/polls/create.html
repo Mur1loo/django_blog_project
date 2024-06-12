@@ -1,0 +1,26 @@
+<div class="create-post">
+    <nav>
+        <ul>
+            {% if user.is_authenticated %}
+            <li>
+                <form action="{% url 'accounts:logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
+            <li><a href="{% url 'blog:create' %}"> </a></li>
+            {% else %}
+            <li><a href="{% url 'accounts:login' %}">Login</a></li>
+            <li><a href="{% url 'accounts:signup' %}">Signup</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <h2>Create a New Post</h2>
+    <div>
+        <form action="{% url 'blog:create' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Create">
+        </form>
+    </div>
+</div>

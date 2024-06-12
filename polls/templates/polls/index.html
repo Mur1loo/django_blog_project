@@ -6,12 +6,29 @@
     <title>Lista de Posts</title>
 </head>
 <body>
+    <nav>
+        <ul>
+            {% if user.is_authenticated %}
+            <li>
+                <form action="{% url 'accounts:logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
+            <li><a href="{% url 'blog:create' %}">Create a Post</a></li>
+            {% else %}
+            <li><a href="{% url 'accounts:login' %}">Login</a></li>
+            <li><a href="{% url 'accounts:signup' %}">Signup</a></li>
+            {% endif %}
+        </ul>
+    </nav>
     <h1>Lista de Posts</h1>
     <ul>
         {% for post in posts_list %}
             <li>
                 <h2><a href="{% url 'blog:detail' post.id %}">{{ post.tittle }}</a></h2>
                 <p>{{ post.initial_text}}</p>
+                <p><img src="{{ post.image.url }}" ></p>
                 <p>Data de Publicação: {{ post.data_published }}</p>
                 <p>Tags: {{ post.tags.slugs }}</p>
             </li>

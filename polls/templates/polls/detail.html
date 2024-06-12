@@ -5,7 +5,24 @@
     <title>Post</title>
 </head>
 <body>
+    <nav>
+        <ul>
+            {% if user.is_authenticated %}
+            <li>
+                <form action="{% url 'accounts:logout' %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+            </li>
+            <li><a href="{% url 'blog:create' %}"> </a></li>
+            {% else %}
+            <li><a href="{% url 'accounts:login' %}">Login</a></li>
+            <li><a href="{% url 'accounts:signup' %}">Signup</a></li>
+            {% endif %}
+        </ul>
+    </nav>
     <h1>{{ post.tittle }}</h1>
+    <p><img src="{{ post.image }}"></p>
     <p>{{ post.text }}</p>
 </body>
 </html>
